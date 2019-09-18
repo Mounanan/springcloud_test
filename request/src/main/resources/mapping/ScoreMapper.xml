@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mouna.request.dao.ScoreMapper">
+    <resultMap id="BaseResultMap" type="com.mouna.request.bean.Score" >
+        <id column="sco_id" property="scoId" jdbcType="VARCHAR" />
+        <result column="stu_id" property="stuId" jdbcType="VARCHAR" />
+        <result column="math" property="math" jdbcType="VARCHAR" />
+        <result column="chinese" property="chinese" jdbcType="VARCHAR" />
+        <result column="english" property="english" jdbcType="VARCHAR" />
+        <result column="history" property="history" jdbcType="VARCHAR" />
+        <result column="geography" property="geography" jdbcType="VARCHAR" />
+        <result column="politics" property="politics" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        sco_id, stu_id, math, chinese, english, history, geography, politics
+    </sql>
+
+    <!--条件查询学生成绩-->
+    <select id="getStudentScore" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from score where stu_id = #{stuId}
+    </select>
+
+</mapper>

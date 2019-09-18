@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mouna.service.dao.StudentMapper">
+    <resultMap id="BaseResultMap" type="com.mouna.service.bean.Student" >
+        <id column="stu_id" property="stuId" jdbcType="VARCHAR" />
+        <result column="stu_name" property="stuName" jdbcType="VARCHAR" />
+        <result column="birth_date" property="birthDate" jdbcType="VARCHAR" />
+        <result column="sex" property="stuSex" jdbcType="VARCHAR" />
+        <result column="class_id" property="stuClassId" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        stu_id, stu_name, birth_date, sex, class_id
+    </sql>
+
+    <!--条件查询学生信息-->
+    <select id="getStudentByStuName" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from student where stu_name = #{stuName}
+    </select>
+
+    <!--查询所有学生信息-->
+    <select id="getAllStudents" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from student
+    </select>
+
+</mapper>
